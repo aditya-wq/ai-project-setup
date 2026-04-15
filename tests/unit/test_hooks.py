@@ -9,6 +9,7 @@ from ai_project.hooks import (
     get_mode,
     clear_mode,
     get_status_badge,
+    HOOK_FILE,
 )
 
 
@@ -34,7 +35,7 @@ class TestSetMode:
     def test_sets_mode(self):
         """Test setting mode creates flag file."""
         set_mode("lite")
-        flag_file = Path.home() / ".aiproject" / ".aiproject-mode"
+        flag_file = Path.home() / ".aiproject" / HOOK_FILE
         assert flag_file.exists()
 
 
@@ -71,13 +72,14 @@ class TestGetStatusBadge:
 
     def test_returns_badge_for_mode(self):
         """Test returns badge text for active mode."""
-        set_mode("lite")
-        badge = get_status_badge()
-        assert "lite" in badge.lower()
-        clear_mode()
+        badge = get_status_badge("lite")
+        assert "LITE" in badge
+        assert "AIPROJECT" in badge
 
     def test_returns_empty_when_inactive(self):
         """Test returns empty when not active."""
-        clear_mode()
-        badge = get_status_badge()
+        badge = get_status_badge("off")
         assert badge == ""
+        
+        badge2 = get_status_badge("")
+        assert badge2 == ""

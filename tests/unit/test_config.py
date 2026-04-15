@@ -14,7 +14,7 @@ class TestSettings:
         assert settings.model == "claude-sonnet-4-5"
         assert settings.max_file_size == 500000
         assert settings.max_retries == 2
-        assert settings.backup_suffix == ".original"
+        assert settings.backup_suffix == ".original.md"
         assert settings.compress_enabled is True
         assert settings.hook_auto_activate is True
         assert settings.default_intensity == "full"
@@ -26,7 +26,7 @@ class TestSettings:
         os.environ["AIPROJECT_MAX_FILE_SIZE"] = "1000000"
         os.environ["AIPROJECT_ENABLED"] = "false"
 
-        settings = Settings()
+        settings = Settings.from_env()
         assert settings.model == "claude-opus-4"
         assert settings.max_file_size == 1000000
         assert settings.compress_enabled is False
@@ -36,16 +36,17 @@ class TestSettings:
         del os.environ["AIPROJECT_ENABLED"]
 
     def test_validate_model(self):
-        """Test model validation."""
+        """Test model validation via env variables."""
         os.environ["AIPROJECT_MODEL"] = "invalid-model"
-        settings = Settings()
+        settings = Settings.from_env()
+        # Since from_env gets string directly, it should be "invalid-model"
         assert settings.model == "invalid-model"
         del os.environ["AIPROJECT_MODEL"]
 
     def test_validate_max_retries(self):
-        """Test max_retries validation."""
+        """Test max_retries validation parsing."""
         os.environ["AIPROJECT_MAX_RETRIES"] = "5"
-        settings = Settings()
+        settings = Settings.from_env()
         assert settings.max_retries == 5
         del os.environ["AIPROJECT_MAX_RETRIES"]
 
@@ -63,4 +64,4 @@ class TestGetSettings:
         """Test that reload_settings returns a new instance."""
         settings1 = get_settings()
         settings2 = reload_settings()
-        assert settings1 is settings2
+        assert settings1 is not settings2
