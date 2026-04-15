@@ -5,7 +5,8 @@
   "bin": {
     "ai": "bin/ai-setup.js",
     "ai-setup": "bin/ai-setup.js",
-    "ai-project": "bin/ai-setup.js"
+    "ai-project": "bin/ai-setup.js",
+    "ai-project-setup": "bin/ai-setup.js"
   },
   "scripts": {
     "start": "node bin/ai-setup.js",
@@ -31,7 +32,7 @@
   "engines": {
     "node": ">=16.0.0"
   },
-  "main": "index.js",
+  "main": "bin/ai-setup.js",
   "directories": {
     "doc": "docs",
     "test": "tests"

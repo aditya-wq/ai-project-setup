@@ -165,7 +165,7 @@ pip install ai-project-setup
 ### Node.js Package (Universal AI Brain Generator)
 
 ```bash
-npm install -g ai-project-setup
+npm install -g github:aditya-wq/ai-project-setup
 ```
 
 ### Direct Download
@@ -184,8 +184,9 @@ chmod +x ai
 ### 1. Install the Universal AI Brain Generator
 
 ```bash
-# Using npm (recommended)
-npm install -g ai-project-setup
+# Using npm (via GitHub)
+npm install -g github:aditya-wq/ai-project-setup
+
 
 # Or using direct download
 curl -o ai https://raw.githubusercontent.com/aditya-wq/ai-project-setup/main/bin/ai-setup.js
