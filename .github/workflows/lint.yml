@@ -1,0 +1,62 @@
+name: Lint
+
+on:
+  push:
+    branches: [main, develop]
+  pull_request:
+    branches: [main, develop]
+
+jobs:
+  lint:
+    name: Lint Code
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install ruff black mypy
+
+      - name: Run Ruff
+        run: ruff check src tests
+
+      - name: Check code formatting with Black
+        run: black --check src tests
+
+      - name: Run MyPy type checking
+        run: mypy src
+
+  docs:
+    name: Check Documentation
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Check required files exist
+        run: |
+          test -f README.md
+          test -f CONTRIBUTING.md
+          test -f LICENSE
+          test -f CHANGELOG.md
+          test -f ACKNOWLEDGEMENTS.md
+
+      - name: Verify README has required sections
+        run: |
+          grep -q "## Features" README.md
+          grep -q "## Installation" README.md
+          grep -q "## Usage" README.md

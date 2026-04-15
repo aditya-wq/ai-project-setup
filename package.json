@@ -1,0 +1,31 @@
+{
+  "name": "ai-project-setup",
+  "version": "3.1.0",
+  "description": "Intelligent auto-discovery engine that generates a premium, enterprise-grade AI brain for any project — enforcing zero-tolerance delivery standards for fully working, responsive, production-quality output.",
+  "bin": {
+    "ai": "./bin/ai-setup.js",
+    "ai-setup": "./bin/ai-setup.js",
+    "ai-project": "./bin/ai-setup.js"
+  },
+  "scripts": {
+    "start": "node bin/ai-setup.js"
+  },
+  "keywords": [
+    "ai",
+    "claude",
+    "claude-code",
+    "cursor",
+    "windsurf",
+    "copilot",
+    "antigravity",
+    "setup",
+    "cli",
+    "universal",
+    "multi-ide"
+  ],
+  "author": "Aditya Tambile",
+  "license": "MIT",
+  "engines": {
+    "node": ">=16.0.0"
+  }
+}
