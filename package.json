@@ -3,12 +3,15 @@
   "version": "3.1.0",
   "description": "Intelligent auto-discovery engine that generates a premium, enterprise-grade AI brain for any project — enforcing zero-tolerance delivery standards for fully working, responsive, production-quality output.",
   "bin": {
-    "ai": "./bin/ai-setup.js",
-    "ai-setup": "./bin/ai-setup.js",
-    "ai-project": "./bin/ai-setup.js"
+    "ai": "bin/ai-setup.js",
+    "ai-setup": "bin/ai-setup.js",
+    "ai-project": "bin/ai-setup.js"
   },
   "scripts": {
-    "start": "node bin/ai-setup.js"
+    "start": "node bin/ai-setup.js",
+    "test": "echo \"No tests specified\" && exit 0",
+    "publish-package": "npm publish",
+    "prepublishOnly": "npm test"
   },
   "keywords": [
     "ai",
@@ -27,5 +30,19 @@
   "license": "MIT",
   "engines": {
     "node": ">=16.0.0"
-  }
+  },
+  "main": "index.js",
+  "directories": {
+    "doc": "docs",
+    "test": "tests"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aditya-wq/ai-project-setup.git"
+  },
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/aditya-wq/ai-project-setup/issues"
+  },
+  "homepage": "https://github.com/aditya-wq/ai-project-setup#readme"
 }
